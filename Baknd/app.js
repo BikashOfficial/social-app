@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -8,15 +9,16 @@ const userRoutes = require("./routes/user.route.js");
 
 app.use(express.json());
 // app.use(cors());
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['set-cookie']
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["set-cookie"],
+  })
+);
 app.use(cookieParser());
-dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 connectToDb();
 
