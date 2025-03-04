@@ -11,7 +11,7 @@ app.use(express.json());
 // app.use(cors());
 app.use(
   cors({
-    origin: "http://localhost:5173" || "https://socialapp-c4ef.onrender.com",
+    origin: "https://socialapp-c4ef.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
