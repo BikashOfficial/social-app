@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: "https://socialapp-c4ef.onrender.com",
     credentials: true,
-    methods: ["GET", "POST", "PUT"],
+    methods: ["GET", "POST", "PUT","DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     exposedHeaders: ["set-cookie"],
   })

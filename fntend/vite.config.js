@@ -13,5 +13,13 @@ export default defineConfig({
     port: 5173,
     historyApiFallback: true // Add this line
   },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
   base: '/' // Add this line
 })
