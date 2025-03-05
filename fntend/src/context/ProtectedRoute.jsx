@@ -60,18 +60,25 @@ const ProtectedRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          logout();
+          return;
+        }
+
         await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
           withCredentials: true,
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${token}`
           }
         });
       } catch (error) {
+        console.error('Auth check failed:', error);
         logout();
       }
     };
     checkAuth();
-  }, [location.pathname]);
+  }, [location.pathname, logout]);
 
   if (!user || !user.email) {
     return <Navigate to="/start" replace state={{ from: location }} />;
