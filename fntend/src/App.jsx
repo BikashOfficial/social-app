@@ -13,6 +13,33 @@ import NotFound from "./components/NotFound";
 import Upload from "./pages/Upload";
 // import ProtectedRoute from "./components/ProtectedRoute";
 
+// const App = () => {
+//   return (
+//     <div>
+//       <Routes>
+//         <Route path="/start" element={<Start />} />
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/register" element={<SignUp />} />
+//         <Route path="*" element={<NotFound />} />
+
+//         {/* Protected routes */}
+//         <Route element={<ProtectedRoute />}>
+          
+//           <Route path="/" element={<Home />} />
+//           <Route path="/profile" element={<User_profile />} />
+//           <Route path="/content" element={<Content_view />} />
+//           <Route path="/notifications" element={<Notification />} />
+//           <Route path="/explore" element={<Explore />} />
+//           <Route path="/messages" element={<Messages />} />
+//           <Route path="/upload" element={<Upload />} />
+//           <Route path="*" element={<NotFound />} />
+//         </Route>
+//       </Routes>
+//     </div>
+//   );
+// };
+
+
 const App = () => {
   return (
     <div>
@@ -20,11 +47,8 @@ const App = () => {
         <Route path="/start" element={<Start />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="*" element={<NotFound />} />
 
-        {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
-          
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<User_profile />} />
           <Route path="/content" element={<Content_view />} />
@@ -32,8 +56,9 @@ const App = () => {
           <Route path="/explore" element={<Explore />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

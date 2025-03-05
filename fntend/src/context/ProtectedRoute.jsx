@@ -10,14 +10,52 @@
 
 // export default ProtectedRoute;
 
+// import React, { useContext, useEffect } from "react";
+// import { Navigate, Outlet, useNavigate } from "react-router-dom";
+// import { UserDataContext } from "./UserContext";
+// import axios from "axios";
+
+// const ProtectedRoute = () => {
+//   const { user, logout } = useContext(UserDataContext);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const checkAuth = async () => {
+//       try {
+//         await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
+//           withCredentials: true,
+//           headers: {
+//             'Authorization': `Bearer ${localStorage.getItem('token')}`
+//           }
+//         });
+//       } catch (error) {
+//         if (error.response?.data?.redirect) {
+//           logout();
+//           navigate('/start');
+//         }
+//       }
+//     };
+
+//     checkAuth();
+//   }, [navigate, logout]);
+
+//   if (!user || !user.email) {
+//     return <Navigate to="/start" replace />;
+//   }
+
+//   return <Outlet />;
+// };
+
+// export default ProtectedRoute;
+
 import React, { useContext, useEffect } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { UserDataContext } from "./UserContext";
 import axios from "axios";
 
 const ProtectedRoute = () => {
   const { user, logout } = useContext(UserDataContext);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -29,18 +67,14 @@ const ProtectedRoute = () => {
           }
         });
       } catch (error) {
-        if (error.response?.data?.redirect) {
-          logout();
-          navigate('/start');
-        }
+        logout();
       }
     };
-
     checkAuth();
-  }, [navigate, logout]);
+  }, [location.pathname]);
 
   if (!user || !user.email) {
-    return <Navigate to="/start" replace />;
+    return <Navigate to="/start" replace state={{ from: location }} />;
   }
 
   return <Outlet />;
