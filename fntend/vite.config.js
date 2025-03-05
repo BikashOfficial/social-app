@@ -14,16 +14,7 @@ export default defineConfig({
     historyApiFallback: true // Add this line
   },
   build: {
-    outDir: 'dist',
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
-      }
-    }
+    outDir: 'dist'
   },
   base: '/', // Add this line
-  preview: {
-    port: 5173,
-    strictPort: true,
-  }
 })
